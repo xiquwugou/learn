@@ -18,12 +18,12 @@ class ReadChannel(object):
 
 class IsOddTests(unittest.TestCase):
     def test_read_channel(self):
-        read_url = ReadUrl("http://rcmsapi.chinacache.com:36000/customers")
+        read_url = ReadUrl("http://localhost:36000/customers")
         qq = read_url.get_channels("qq")
         self.assertIsNotNone(qq)
 
     def test_get_customers(self):
-        read_url = ReadUrl("http://rcmsapi.chinacache.com:36000/customers")
+        read_url = ReadUrl("http://localhost:36000/customers")
         customers = read_url.get_customers()
         self.assertIsNotNone(customers)
 
