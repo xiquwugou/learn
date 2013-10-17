@@ -1,0 +1,62 @@
+
+.mete-img {
+
+	margin-top: 5px;
+	margin-left: 4.16%;
+	margin-right: 4.16%;
+	padding: 5px;
+	
+	border: 5px solid #BBBBBB;
+}
+
+img {
+	margin-left:4.16%;
+	border-style: none;
+	max-width: 100%;
+	
+	   
+
+
+	overflow: hidden;
+}
+
+
+
+
+h2 {
+	margin-left: -4.16%;
+	padding: 0.694% 1.38%;
+	background: #FBF3DC;
+	border-radius: 5px;
+	font-size: 20px;
+	line-height: 36px;
+	font-family: "微软雅黑", Helvetica, Arial, sans-serif;
+	color: #333333;
+	margin: 10px 0;
+	background: none repeat scroll 0 0 #FBF3DC;
+	border-radius: 5px 5px 5px 5px;
+	
+	padding: 0.48% 1.38%;
+	color: #333333;
+	font-weight: bold;
+	margin-left: -4.16%;
+	text-rendering: optimizelegibility;
+}
+
+ul, ol {
+    margin-left: 20px;
+    padding: 0 0 0 40px;
+}
+
+
+
+@import url("http://fengaili.com/assets/themes/the-minimum/css/custom.css");
+@import url("http://fengaili.com/assets/themes/the-minimum/css/jquery-ui.css");
+@import url("http://fengaili.com/assets/themes/the-minimum/css/screen.css");
+
+
+body {font-family:"Hiragino Sans GB","Microsoft Yahei",Tahoma, Helvetica, Arial, "SimSun", sans-serif; line-height: 1.7 ;
+
+  background: none repeat scroll 0 0 #EEEEE3;
+}
+
