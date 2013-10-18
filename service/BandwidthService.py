@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 #encoding: utf-8
-from xml.etree import ElementTree
 import unittest
-import codecs
 
 from xml.dom.minidom import parseString
 
@@ -16,7 +14,6 @@ class BandwidthService(object):
     def __init__(self, url):
         self.url = url
 
-
     def get_bandwidth_date(self):
         _file = urllib2.urlopen(self.url)
         data = _file.read()
@@ -26,9 +23,13 @@ class BandwidthService(object):
         dom = parseString(str_xml)
         return dom
 
+    def get_flux(self):
+        dom = self.get_bandwidth_date()
+        return self._get_flux(dom)
+
     def summary(self):
         dom = self.get_bandwidth_date()
-        _list = self.get_indata(dom)
+        _list = self.get_in_data(dom)
         results = [int(i) for i in _list]
         out_list = self.get_out_data(dom)
         results_out = [int(i) for i in out_list]
@@ -39,22 +40,24 @@ class BandwidthService(object):
         }
         return data
 
+    @staticmethod
+    def get_in_data(dom):
+        xml_tag = dom.getElementsByTagName('InData')[0].toxml()
+        xml_data = xml_tag.replace('<InData>', '').replace('</InData>', '')
+        _list = xml_data.split(',')
+        _list.pop()
+        return _list
 
-    def get_indata(self, dom):
-        xmlTag = dom.getElementsByTagName('InData')[0].toxml()
-        xmlData = xmlTag.replace('<InData>', '').replace('</InData>', '')
-        list = xmlData.split(',')
-        list.pop()
-        return list
-
-    def get_out_data(self, dom):
+    @staticmethod
+    def get_out_data(dom):
         xmlTag = dom.getElementsByTagName('OutData')[0].toxml()
         xmlData = xmlTag.replace('<OutData>', '').replace('</OutData>', '')
         list = xmlData.split(',')
         list.pop()
         return list
 
-    def get_flux(self, dom):
+    @staticmethod
+    def _get_flux(dom):
         xmlTag = dom.getElementsByTagName('OutFlux')[0].toxml()
         xmlData = xmlTag.replace('<OutFlux>', '').replace('</OutFlux>', '')
         return xmlData
@@ -62,7 +65,9 @@ class BandwidthService(object):
 
 class IsOddTests(unittest.TestCase):
     def test_read_channel(self):
-        url = 'http://223.202.45.145/BillQueryService3/pub/query/billing/LogBandWidthByChannelID?Type=standard&RegionID=9050&ChannelCount=1&StartTime=20131005&EndTime=20131005&ChannelID1=7245'
+        url = 'http://223.202.45.145/BillQueryService3/pub/query/billing/' \
+              'LogBandWidthByChannelID?Type=standard&RegionID=9050&ChannelCount=1&' \
+              'StartTime=20131005&EndTime=20131005&ChannelID1=7245'
         read_url = BandwidthService(url)
         band = read_url.summary()
         self.assertIsNotNone(band)
