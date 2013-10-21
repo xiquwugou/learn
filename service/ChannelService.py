@@ -26,6 +26,7 @@ class ChannelService(object):
         for p in products:
             c = self.get_channel(self.user_name, p['code'])
             for _c in c:
+                _c["product_name"] = p["name"]
                 channels.append(_c)
         return channels
 
@@ -39,7 +40,7 @@ class ChannelService(object):
     @staticmethod
     def get_properties():
         p = Properties()
-        print os.getcwd()
+        #print os.getcwd()
         p.load(open('C:\\Users\\song\\learn\\config\\config.properties'))
         return p
 

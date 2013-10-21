@@ -25,7 +25,13 @@ class BandwidthService(object):
 
     def get_flux(self):
         dom = self.get_bandwidth_date()
-        return self._get_flux(dom)
+        out_flux = self._get_out_flux(dom)
+        in_flux = self._get__in_flux(dom)
+
+        if out_flux >= in_flux:
+            return out_flux
+        else:
+            return in_flux
 
     def summary(self):
         dom = self.get_bandwidth_date()
@@ -57,9 +63,16 @@ class BandwidthService(object):
         return list
 
     @staticmethod
-    def _get_flux(dom):
+    def _get_out_flux(dom):
         xmlTag = dom.getElementsByTagName('OutFlux')[0].toxml()
         xmlData = xmlTag.replace('<OutFlux>', '').replace('</OutFlux>', '')
+        return xmlData
+
+
+    @staticmethod
+    def _get__in_flux(dom):
+        xmlTag = dom.getElementsByTagName('InFlux')[0].toxml()
+        xmlData = xmlTag.replace('<InFlux>', '').replace('</InFlux>', '')
         return xmlData
 
 

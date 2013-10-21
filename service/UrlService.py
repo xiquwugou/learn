@@ -10,7 +10,7 @@ __author__ = 'song'
 
 def get_properties():
     p = Properties()
-    print os.getcwd()
+    #print os.getcwd()
     p.load(open('C:\\Users\\song\\learn\\config\\config.properties'))
     return p
 
@@ -19,7 +19,6 @@ def get_channels(channels=None):
     _url = '&'
     for i in range(len(channels)):
         x = channels[i]
-        print x
         _url = _url + 'ChannelID' + str(i + 1) + '=' + str((channels[i]['channelCode'])) + '&'
     return _url
 
