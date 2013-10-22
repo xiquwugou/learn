@@ -26,6 +26,8 @@ def filter_customer():
             _customers.remove(y)
     return list(_customers)
 
+
 if __name__ == "__main__":
-    filter_customer()
+    print type(filter_customer())
+
 

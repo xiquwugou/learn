@@ -1,3 +1,4 @@
+from __future__ import division
 import csv
 import json
 import logging
@@ -13,6 +14,7 @@ from service.BandwidthService import BandwidthService
 from service.ChannelService import ChannelService
 from service.UrlService import parse_url
 from util.read_json_files import get_bandwidth_channels
+
 
 __author__ = 'song'
 
@@ -38,6 +40,7 @@ def get_bandwidth_by_channels(_channels):
     for u in url:
         read_url = BandwidthService(u)
         band = read_url.get_flux()
+        band /= 1000000.0
         if "RegionID=9050" in u:
             bandwidth["_9050"] = band
         elif "RegionID=10200" in u:
